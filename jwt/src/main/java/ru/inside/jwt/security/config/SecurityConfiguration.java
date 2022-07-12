@@ -21,7 +21,7 @@ import ru.inside.jwt.security.filters.TokenAuthorizationFilter;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     public static final String API = "/api";
-    public static final String LOGIN_FILTER_PROCESSES_URL = API + "/login";
+    public static final String LOGIN_FILTER_PROCESSES_URL = API + "/v1/login";
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -62,7 +62,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 UsernamePasswordAuthenticationFilter.class);
 
         http.authorizeRequests()
-                .antMatchers("/signUp").permitAll()
-                .antMatchers("/api/login/**").permitAll();
+                .antMatchers("api/v1/signUp").permitAll()
+                .antMatchers("/api/v1/login").permitAll();
     }
 }

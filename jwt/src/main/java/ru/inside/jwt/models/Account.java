@@ -22,9 +22,6 @@ public class Account {
 
     private String password;
 
-//    @Column(name = "access_token")
-//    private String accessToken;
-
-    @OneToOne(mappedBy = "accountId")
+    @OneToOne()
     private AccessTokenAccount token;
 }

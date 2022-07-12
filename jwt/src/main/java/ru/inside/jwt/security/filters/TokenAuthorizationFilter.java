@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
+import ru.inside.jwt.models.AccessTokenAccount;
 import ru.inside.jwt.models.Account;
 import ru.inside.jwt.repositories.AccessTokensRepository;
 import ru.inside.jwt.repositories.AccountsRepository;
@@ -27,8 +28,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TokenAuthorizationFilter extends OncePerRequestFilter {
 
-    @Value("${secretKey}")
-    private static String SECRET_KEY;
+    private final static String SECRET_KEY = "secret_key_34231";
 
     private final AccountsRepository accountsRepository;
     private final AccessTokensRepository accessTokensRepository;

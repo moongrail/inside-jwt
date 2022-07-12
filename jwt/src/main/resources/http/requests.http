@@ -1,4 +1,14 @@
-POST localhost/signUp/api/v1/createAccount
+POST localhost/api/v1/signUp
+Content-Type: application/json
+
+{
+  "name": "Koko",
+  "password": "12321aaa"
+}
+
+###
+
+POST localhost/api/v1/login
 Content-Type: application/json
 
 {

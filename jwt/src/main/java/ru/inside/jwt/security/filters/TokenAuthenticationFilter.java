@@ -12,7 +12,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import ru.inside.jwt.dto.SignInDto;
-import ru.inside.jwt.dto.SignUpDto;
 import ru.inside.jwt.models.AccessTokenAccount;
 import ru.inside.jwt.models.Account;
 import ru.inside.jwt.repositories.AccessTokensRepository;
@@ -29,8 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 public class TokenAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    @Value("${secretKey}")
-    private static String SECRET_KEY;
+    private final static String SECRET_KEY = "secret_key_34231";
     public static final String TOKEN = "token";
 
     private final ObjectMapper objectMapper;
@@ -50,7 +48,7 @@ public class TokenAuthenticationFilter extends UsernamePasswordAuthenticationFil
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
             SignInDto dto = objectMapper.readValue(request.getReader(), SignInDto.class);
-            log.info("Attempt authentication - email {}, password {}", dto.getName(), dto.getPassword());
+            log.info("Attempt authentication - name {}, password {}", dto.getName(), dto.getPassword());
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(dto.getName(),
                     dto.getPassword());
 
@@ -70,7 +68,7 @@ public class TokenAuthenticationFilter extends UsernamePasswordAuthenticationFil
                 .sign(Algorithm.HMAC256(SECRET_KEY));
 
         AccessTokenAccount tokenAccount = AccessTokenAccount.builder()
-                .accountId(account)
+                .account(account)
                 .accessToken(accessToken)
                 .build();
 

@@ -20,11 +20,10 @@ public class AccessTokenAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "account_id")
-    @OneToOne()
-    @JoinColumn(name = "id")
-    private Account accountId;
 
-    @Column(name = "access_token")
+    @OneToOne()
+    private Account account;
+
+    @Column(name = "access_token",unique = true, nullable = false)
     private String accessToken;
 }

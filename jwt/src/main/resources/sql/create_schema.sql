@@ -2,10 +2,9 @@ CREATE DATABASE inside;
 
 CREATE TABLE IF NOT EXISTS account
 (
-    id           BIGSERIAL PRIMARY KEY,
-    name         VARCHAR(128) UNIQUE ,
-    password     VARCHAR(256) NOT NULL ,
-    access_token VARCHAR(256)
+    id       BIGSERIAL PRIMARY KEY,
+    name     VARCHAR(128) UNIQUE,
+    password VARCHAR(256) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS access_tokens

@@ -17,7 +17,7 @@ public class AccountUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.singleton(new SimpleGrantedAuthority("ADMIN"));
     }
 
     @Override
@@ -37,7 +37,7 @@ public class AccountUserDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
