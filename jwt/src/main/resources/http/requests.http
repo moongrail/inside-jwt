@@ -24,6 +24,5 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwibmFtZ
 
 
 {
-  "name": "Koko",
   "message": "Hello"
 }
