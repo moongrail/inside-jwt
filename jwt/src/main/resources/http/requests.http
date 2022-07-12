@@ -15,3 +15,15 @@ Content-Type: application/json
   "name": "Koko",
   "password": "12321aaa"
 }
+
+###
+
+POST localhost/api/v1/messages
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwibmFtZSI6Iktva28ifQ.rfUWiXCHGKcqUPOESou9nIRJNgKPSIBII_God_0ZtNo
+
+
+{
+  "name": "Koko",
+  "message": "Hello"
+}

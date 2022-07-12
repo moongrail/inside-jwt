@@ -24,6 +24,6 @@ public class AccessTokenAccount {
     @OneToOne()
     private Account account;
 
-    @Column(name = "access_token",unique = true, nullable = false)
+    @Column()
     private String accessToken;
 }
