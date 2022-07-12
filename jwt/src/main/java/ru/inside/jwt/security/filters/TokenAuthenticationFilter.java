@@ -72,11 +72,11 @@ public class TokenAuthenticationFilter extends UsernamePasswordAuthenticationFil
                 .accessToken(accessToken)
                 .build();
 
-        accessTokensRepository.save(tokenAccount);
-
-        account.setToken(tokenAccount);
-
-        accountsRepository.save(account);
+        if (!accessTokensRepository.existsByAccessToken(accessToken)) {
+            accessTokensRepository.save(tokenAccount);
+            account.setToken(tokenAccount);
+            accountsRepository.save(account);
+        }
 
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         objectMapper.writeValue(response.getWriter(), Collections.singletonMap(TOKEN, accessToken));
