@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.inside.jwt.models.Account;
 import ru.inside.jwt.models.Message;
 
 import java.util.List;

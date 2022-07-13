@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.inside.jwt.dto.AccountWithMessages;
 import ru.inside.jwt.dto.MessageDto;
 import ru.inside.jwt.dto.ResponseDto;
 import ru.inside.jwt.dto.SignUpDto;
@@ -12,7 +11,6 @@ import ru.inside.jwt.services.AccountsService;
 import ru.inside.jwt.services.DecoderHeaderService;
 import ru.inside.jwt.services.MessagesService;
 
-import java.util.Collections;
 import java.util.List;
 
 @RestController
