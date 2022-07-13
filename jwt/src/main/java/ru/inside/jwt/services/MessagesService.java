@@ -4,5 +4,5 @@ import ru.inside.jwt.dto.MessageDto;
 
 public interface MessagesService {
 
-    void save(MessageDto message,String name);
+    void save(MessageDto message);
 }

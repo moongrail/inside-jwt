@@ -19,15 +19,14 @@ public class MessagesServiceImpl implements MessagesService {
     private final AccountsRepository accountsRepository;
 
     @Override
-    public void save(MessageDto message, String name) {
+    public void save(MessageDto message) {
 
-        Optional<Account> account = accountsRepository.findByName(name);
+        Optional<Account> account = accountsRepository.findByName(message.getName());
 
         if (account.isPresent()) {
-
             Message newMessage = Message.builder()
                     .account(account.get())
-                    .name(name)
+                    .name(message.getName())
                     .message(message.getMessage())
                     .timestamp(System.currentTimeMillis())
                     .build();
