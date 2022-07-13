@@ -28,6 +28,6 @@ public class Account {
     @OneToOne()
     private AccessTokenAccount token;
 
-    @OneToMany(mappedBy = "account",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "account")
     private List<Message> messages;
 }

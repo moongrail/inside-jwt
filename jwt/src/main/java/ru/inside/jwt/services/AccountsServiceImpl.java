@@ -16,6 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static ru.inside.jwt.dto.MessageDto.from;
+import static ru.inside.jwt.dto.SignUpDto.*;
 
 @AllArgsConstructor
 @Service
@@ -26,24 +27,23 @@ public class AccountsServiceImpl implements AccountsService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public void signUp(SignUpDto signUpDto) {
+    public Optional<SignUpDto> saveAccount(SignUpDto signUpDto) {
 
-        if (signUpDto == null){
-            log.error("Empty data");
+        boolean formNotEmpty = signUpDto.getName() != null || signUpDto.getPassword() != null;
+
+        if (formNotEmpty && !accountsRepository.existsByName(signUpDto.getName())){
+            Account account = Account.builder()
+                    .name(signUpDto.getName())
+                    .password(passwordEncoder.encode(signUpDto.getPassword()))
+                    .build();
+
+            accountsRepository.save(account);
+            return Optional.of(SignUpDto.from(account));
         }
-        Account account = Account.builder()
-                .name(signUpDto.getName())
-                .password(passwordEncoder.encode(signUpDto.getPassword()))
-                .build();
 
-        accountsRepository.save(account);
+        log.error("Account is empty or already exists.");
+        return Optional.empty();
     }
-
-    @Override
-    public String addMessage(String message) {
-        return null;
-    }
-
     @Override
     public List<MessageDto> getMessages(String name) {
 

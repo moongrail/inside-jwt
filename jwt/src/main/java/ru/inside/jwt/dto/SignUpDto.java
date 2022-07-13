@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.inside.jwt.models.Account;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
@@ -20,5 +20,9 @@ public class SignUpDto {
     @NotEmpty
     private String password;
 
-
+    public static SignUpDto from(Account account){
+        return SignUpDto.builder()
+                .name(account.getName())
+                .build();
+    }
 }

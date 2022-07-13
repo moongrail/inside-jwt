@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 @Builder
 public class MessageDto {
 
+    private Long id;
+
     @NotEmpty
     @NotNull
     private String name;
@@ -28,10 +30,12 @@ public class MessageDto {
 
     public static MessageDto from(Message message) {
         return MessageDto.builder()
+                .id(message.getId())
                 .name(message.getName())
                 .message(message.getMessage())
                 .build();
     }
+
     public static List<MessageDto> from(List<Message> messages) {
         return messages.stream().map(MessageDto::from).collect(Collectors.toList());
     }

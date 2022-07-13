@@ -3,7 +3,7 @@ POST localhost/api/v1/signUp
 Content-Type: application/json
 
 {
-  "name": "",
+  "name": "Inside",
   "password": "12321aaa"
 }
 
@@ -16,6 +16,7 @@ Content-Type: application/json
   "password": "12321aaa"
 }
 
+
 ### Сохранение сообщения.Поменять токен в хедере, если токен изменился.
 POST localhost/api/v1/messages
 Content-Type: application/json
@@ -23,7 +24,7 @@ Authorization: Bearer_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwibmFtZ
 
 {
   "name" : "Inside",
-  "message": "Hello"
+  "message": "Hi"
 }
 
 ### Если message = "history 10" вывод последних 10 сообщений.
