@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.inside.jwt.models.Message;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,8 +17,12 @@ import java.util.stream.Collectors;
 @Builder
 public class MessageDto {
 
+    @NotEmpty
+    @NotNull
     private String name;
 
+
+    @NotNull
     private String message;
 
 

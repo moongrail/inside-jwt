@@ -56,6 +56,4 @@ public class AccountsServiceImpl implements AccountsService {
 
         return from((messageList));
     }
-
-
 }

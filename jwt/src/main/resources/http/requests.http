@@ -3,7 +3,7 @@ POST localhost/api/v1/signUp
 Content-Type: application/json
 
 {
-  "name": "Inside",
+  "name": "",
   "password": "12321aaa"
 }
 

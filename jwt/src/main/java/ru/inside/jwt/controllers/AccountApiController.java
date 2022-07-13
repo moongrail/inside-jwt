@@ -11,6 +11,7 @@ import ru.inside.jwt.services.AccountsService;
 import ru.inside.jwt.services.DecoderHeaderService;
 import ru.inside.jwt.services.MessagesService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,16 +21,17 @@ public class AccountApiController {
     private final AccountsService accountsService;
 
     private final MessagesService messagesService;
+
     private final DecoderHeaderService decoderHeaderService;
 
     @PostMapping("/api/v1/signUp")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<ResponseDto> signUp(@RequestBody SignUpDto signUpDto) {
+    public ResponseEntity<ResponseDto> signUp(@RequestBody @Valid SignUpDto signUpDto) {
 
         if (signUpDto.getName() != null || signUpDto.getPassword() != null) {
             accountsService.signUp(signUpDto);
             return ResponseEntity.ok().body(ResponseDto.builder()
-                    .data("Account "+signUpDto.getName()+" created.")
+                    .data("Account '"+signUpDto.getName()+"' created.")
                     .success(true)
                     .build());
         }
@@ -43,7 +45,7 @@ public class AccountApiController {
     @PostMapping("/api/v1/messages")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<ResponseDto> sendMessage(@RequestHeader("Authorization") String tokenHeader
-            , @RequestBody MessageDto message) {
+            , @RequestBody @Valid MessageDto message) {
 
         //Пустое тело сообщения -> бадреквест
         if (message == null) {
@@ -81,7 +83,7 @@ public class AccountApiController {
             messagesService.save(message);
 
             return ResponseEntity.ok().body(ResponseDto.builder()
-                    .data("Message: " + message.getMessage() + " saved.")
+                    .data("Message: '" + message.getMessage() + "' saved.")
                     .success(true)
                     .build());
         }
