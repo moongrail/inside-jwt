@@ -13,7 +13,7 @@ public class DecoderHeaderServiceImpl implements DecoderHeaderService {
     @Override
     public String getNameFromJwt(String token) {
 
-        String header = token.substring("Bearer ".length());
+        String header = token.substring("Bearer_".length());
         DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC256(SECRET_KEY))
                 .build().verify(header);
 

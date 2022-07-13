@@ -1,13 +1,10 @@
 package ru.inside.jwt.controllers;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.inside.jwt.dto.ResponseMessages;
+import ru.inside.jwt.dto.AccountWithMessages;
 import ru.inside.jwt.dto.SignUpDto;
 import ru.inside.jwt.services.AccountsService;
 import ru.inside.jwt.services.DecoderHeaderService;
@@ -26,11 +23,11 @@ public class AccountApiController {
     }
 
     @PostMapping("/api/v1/messages")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<ResponseMessages> sendMessage(@RequestHeader("Authorization") String tokenHeader
-            , @RequestBody ResponseMessages messages) {
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity<AccountWithMessages> sendMessage(@RequestHeader("Authorization") String tokenHeader
+            , @RequestBody String message) {
 
-        if (messages == null) {
+        if (message == null) {
             return ResponseEntity.badRequest().build();
         }
 
@@ -38,10 +35,9 @@ public class AccountApiController {
 
             String name = decoderHeaderService.getNameFromJwt(tokenHeader);
 
-            return ResponseEntity.ok().body(ResponseMessages.builder()
-                    .name(name)
-                    .message(messages.getMessage())
-                    .build());
+
+
+            return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.badRequest().build();
     }

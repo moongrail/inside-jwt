@@ -20,7 +20,7 @@ Content-Type: application/json
 
 POST localhost/api/v1/messages
 Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwibmFtZSI6Iktva28ifQ.rfUWiXCHGKcqUPOESou9nIRJNgKPSIBII_God_0ZtNo
+Authorization: Bearer_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwibmFtZSI6Iktva28ifQ.rfUWiXCHGKcqUPOESou9nIRJNgKPSIBII_God_0ZtNo
 
 
 {

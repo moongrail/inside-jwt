@@ -6,27 +6,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-public class Account {
+public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false,unique = true)
-    private String name;
+    @ManyToOne()
+    private Account account;
 
-    private String password;
+    @Column(nullable = false)
+    private String message;
 
-    @OneToOne()
-    private AccessTokenAccount token;
-
-    @OneToMany(mappedBy = "account",fetch = FetchType.EAGER)
-    private List<Message> messages;
+    @Column(nullable = false)
+    private Long timestamp;
 }

@@ -43,9 +43,9 @@ public class TokenAuthorizationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
         } else {
             String tokenHeader = request.getHeader("Authorization");
-            if (tokenHeader != null && tokenHeader.startsWith("Bearer ")) {
+            if (tokenHeader != null && tokenHeader.startsWith("Bearer_")) {
 
-                String token = tokenHeader.substring("Bearer ".length());
+                String token = tokenHeader.substring("Bearer_".length());
 
                 if (!accessTokensRepository.existsByAccessToken(token)) {
                     logger.warn("Token is not exist");
