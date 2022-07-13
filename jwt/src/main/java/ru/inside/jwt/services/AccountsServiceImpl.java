@@ -5,13 +5,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.inside.jwt.dto.MessageDto;
-import ru.inside.jwt.dto.SignInDto;
 import ru.inside.jwt.dto.SignUpDto;
 import ru.inside.jwt.models.Account;
+import ru.inside.jwt.models.Message;
 import ru.inside.jwt.repositories.AccountsRepository;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static ru.inside.jwt.dto.MessageDto.from;
 
 @AllArgsConstructor
 @Service
@@ -20,22 +24,6 @@ public class AccountsServiceImpl implements AccountsService {
 
     private final AccountsRepository accountsRepository;
     private final PasswordEncoder passwordEncoder;
-
-//    @Override
-//    public void signIn(SignInDto signInDto) {
-//
-//        String name = signInDto.getName();
-//        String password = signInDto.getPassword();
-//
-//        Optional<Account> accountForm = accountsRepository.findByName(name);
-//
-//        if (accountForm.isPresent()){
-//            Account account = accountForm.get();
-//            if (account.getPassword().equals(password)) {
-//                Long accountId = account.getId();
-//            }
-//        }
-//    }
 
     @Override
     public void signUp(SignUpDto signUpDto) {
@@ -57,8 +45,16 @@ public class AccountsServiceImpl implements AccountsService {
     }
 
     @Override
-    public List<MessageDto> getMessages() {
-        return null;
+    public List<MessageDto> getMessages(String name) {
+
+        Optional<Account> account = accountsRepository.findByName(name);
+
+        List<Message> messageList = account.get().getMessages().stream()
+                .sorted(Comparator.comparing(Message::getId).reversed())
+                .limit(10)
+                .collect(Collectors.toList());
+
+        return from((messageList));
     }
 
 

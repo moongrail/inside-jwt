@@ -11,6 +11,6 @@ public interface AccountsService {
 
     String addMessage(String message);
 
-    List<MessageDto> getMessages();
+    List<MessageDto> getMessages(String name);
 
 }

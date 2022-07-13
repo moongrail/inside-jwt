@@ -16,10 +16,5 @@ public class SignUpDto {
 
     private String password;
 
-    public SignUpDto from(Account account) {
-        return SignUpDto.builder()
-                .name(account.getName())
-                .password(account.getPassword())
-                .build();
-    }
+
 }

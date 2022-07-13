@@ -1,28 +1,37 @@
+### Создание аккаунта
 POST localhost/api/v1/signUp
 Content-Type: application/json
 
 {
-  "name": "Koko",
+  "name": "Inside",
   "password": "12321aaa"
 }
 
-###
-
+### Вход и получение токена.
 POST localhost/api/v1/login
 Content-Type: application/json
 
 {
-  "name": "Koko",
+  "name": "Inside",
   "password": "12321aaa"
 }
 
-###
-
+### Сохранение сообщения.Поменять токен в хедере, если токен изменился.
 POST localhost/api/v1/messages
 Content-Type: application/json
-Authorization: Bearer_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwibmFtZSI6Iktva28ifQ.rfUWiXCHGKcqUPOESou9nIRJNgKPSIBII_God_0ZtNo
-
+Authorization: Bearer_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwibmFtZSI6Ikluc2lkZSJ9.kMY2G7GWI5uKWQ7l3ewF-p9-d0M3FLAaPYGKm4hJmYs
 
 {
+  "name" : "Inside",
   "message": "Hello"
+}
+
+### Если message = "history 10" вывод последних 10 сообщений.
+POST localhost/api/v1/messages
+Content-Type: application/json
+Authorization: Bearer_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwibmFtZSI6Ikluc2lkZSJ9.kMY2G7GWI5uKWQ7l3ewF-p9-d0M3FLAaPYGKm4hJmYs
+
+{
+  "name" : "Inside",
+  "message": "history 10"
 }

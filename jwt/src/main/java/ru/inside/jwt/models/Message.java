@@ -12,6 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
+@Table(name = "messages")
 public class Message {
 
     @Id
@@ -20,6 +21,8 @@ public class Message {
 
     @ManyToOne()
     private Account account;
+
+    private String name;
 
     @Column(nullable = false)
     private String message;
