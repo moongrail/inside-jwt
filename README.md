@@ -26,18 +26,18 @@
 - docker network list - проверить сеть в списке.
 - docker network create cloud - создать сеть.
 
-Билд приложение:
+Билд приложения:
 
 * 1 вариант cd в папку с докерфайлом и прописать "docker build ."
 * 2 вариант в idea открыть и запустить докерфайл.
 * 3 вариант загрузить с хаба docker pull moongrail/inside:latest
 
 Поднять  композ(должен быть ещё postgres image)
-* Optional установка postgres:
-* docker run --name postgresql -p 5442:5432 -e POSTGRES_PASSWORD=123 -e POSTGRES_DB=inside
 * 1 вариант docker compose up  в консоли в директории приложения
-* 2 вариант запустить в idea docker-compose.yml 
+* 2 вариант запустить в idea docker-compose.yml (сверить настройки).
 
+Если нет postgres:
+* docker run --name postgresql -p 5442:5432 -e POSTGRES_PASSWORD=123 -e POSTGRES_DB=inside
 
 ### HTTP Эндпоинты:
 * Порт 80.
