@@ -1,5 +1,7 @@
 package ru.inside.jwt.services;
 
+import java.util.Optional;
+
 public interface DecoderHeaderService {
-    String getNameFromJwt(String token);
+    Optional<String> getNameFromJwt(String token);
 }

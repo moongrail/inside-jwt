@@ -16,7 +16,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static ru.inside.jwt.dto.MessageDto.from;
-import static ru.inside.jwt.dto.SignUpDto.*;
 
 @AllArgsConstructor
 @Service
@@ -28,9 +27,9 @@ public class AccountsServiceImpl implements AccountsService {
 
     @Override
     public Optional<SignUpDto> saveAccount(SignUpDto signUpDto) {
-
+        //Форма не равна нулю?
         boolean formNotEmpty = signUpDto.getName() != null || signUpDto.getPassword() != null;
-
+        //Форма не равна нулю и такой логин существует или нет в базе
         if (formNotEmpty && !accountsRepository.existsByName(signUpDto.getName())){
             Account account = Account.builder()
                     .name(signUpDto.getName())
@@ -46,14 +45,14 @@ public class AccountsServiceImpl implements AccountsService {
     }
     @Override
     public List<MessageDto> getMessages(String name) {
-
+        //Достаём нужный аккаунт, проверки уже сделаны в контроллере
         Optional<Account> account = accountsRepository.findByName(name);
-
+        //Получаем лист последних 10 сообщений
         List<Message> messageList = account.get().getMessages().stream()
                 .sorted(Comparator.comparing(Message::getId).reversed())
                 .limit(10)
                 .collect(Collectors.toList());
-
+        //Преобразуем модель в дто
         return from((messageList));
     }
 }

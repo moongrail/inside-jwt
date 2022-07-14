@@ -1,5 +1,7 @@
-### Создание аккаунта
-POST localhost/api/v1/signUp
+### Создание аккаунта.
+
+# curl -d '{"name":"Inside","password":"12321aaa"}' -H "Content-Type: application/json" -X POST http://localhost/api/v1/signUp
+POST http://localhost/api/v1/signUp
 Content-Type: application/json
 
 {
@@ -8,7 +10,9 @@ Content-Type: application/json
 }
 
 ### Вход и получение токена.
-POST localhost/api/v1/login
+
+# curl -d '{"name":"Inside","password":"12321aaa"}' -H "Content-Type: application/json" -X POST http://localhost/api/v1/login
+POST http://localhost/api/v1/login
 Content-Type: application/json
 
 {
@@ -16,23 +20,31 @@ Content-Type: application/json
   "password": "12321aaa"
 }
 
-
 ### Сохранение сообщения.Поменять токен в хедере, если токен изменился.
-POST localhost/api/v1/messages
-Content-Type: application/json
+
+# curl -d '{"name":"Inside","message":"One"}' -H 'Authorization: Bearer_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwibmFtZSI6Ikluc2lkZSJ9.kMY2G7GWI5uKWQ7l3ewF-p9-d0M3FLAaPYGKm4hJmYs' -H 'Content-Type: application/json' -X POST http://localhost/api/v1/messages
+POST http://localhost/api/v1/messages
 Authorization: Bearer_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwibmFtZSI6Ikluc2lkZSJ9.kMY2G7GWI5uKWQ7l3ewF-p9-d0M3FLAaPYGKm4hJmYs
+Content-Type: application/json
 
 {
-  "name" : "Inside",
-  "message": "Hi"
+  "name": "Inside",
+  "message": "One"
 }
 
 ### Если message = "history 10" вывод последних 10 сообщений.
-POST localhost/api/v1/messages
-Content-Type: application/json
+
+# curl -d '{"name":"Inside","message":"history 10"}' -H 'Authorization: Bearer_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwibmFtZSI6Ikluc2lkZSJ9.kMY2G7GWI5uKWQ7l3ewF-p9-d0M3FLAaPYGKm4hJmYs' -H 'Content-Type: application/json' -X POST http://localhost/api/v1/messages
+POST http://localhost/api/v1/messages
 Authorization: Bearer_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwibmFtZSI6Ikluc2lkZSJ9.kMY2G7GWI5uKWQ7l3ewF-p9-d0M3FLAaPYGKm4hJmYs
+Content-Type: application/json
 
 {
-  "name" : "Inside",
+  "name": "Inside",
   "message": "history 10"
 }
+
+###
+
+
+

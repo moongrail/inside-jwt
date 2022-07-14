@@ -68,10 +68,10 @@ public class ApiController {
 
         if (tokenHeader != null && tokenHeader.startsWith("Bearer_")) {
 
-            String name = decoderHeaderService.getNameFromJwt(tokenHeader);
+            Optional<String> nameFromJwt = decoderHeaderService.getNameFromJwt(tokenHeader);
 
-            //Если юзернейм из токена не совпадает с из запроса бадреквест.
-            if (!name.equals(message.getName())) {
+            //Если юзернейм из токена не совпадает с именем из запроса бадреквест.
+            if (!nameFromJwt.get().equals(message.getName())) {
 
                 log.error("Token name error");
 
@@ -84,7 +84,7 @@ public class ApiController {
             //Если сообщение из реквеста равно хистори 10, выводим список.
             if (message.getMessage().equals("history 10")) {
 
-                List<MessageDto> messages = accountsService.getMessages(name);
+                List<MessageDto> messages = accountsService.getMessages(nameFromJwt.get());
 
                 return ResponseEntity.ok().body(ResponseDto.builder()
                         .data(messages)

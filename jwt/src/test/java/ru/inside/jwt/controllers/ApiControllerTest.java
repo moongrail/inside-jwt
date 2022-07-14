@@ -60,7 +60,7 @@ class ApiControllerTest {
                 .build()));
 
         when(restTemplate.getForObject("http://localhost/api/v1/login", String.class)).thenReturn(TOKEN_JWT);
-        when(decoderHeaderService.getNameFromJwt(HEADER_TOKEN_JWT)).thenReturn(TEST_NAME);
+        when(decoderHeaderService.getNameFromJwt(HEADER_TOKEN_JWT)).thenReturn(Optional.of(TEST_NAME));
 
         when(accountsService.getMessages(TEST_NAME)).thenReturn(Collections.singletonList(MessageDto.builder()
                 .name(TEST_NAME)
@@ -160,7 +160,5 @@ class ApiControllerTest {
                     .andDo(print())
                     .andExpect(status().is4xxClientError());
         }
-
     }
-
 }

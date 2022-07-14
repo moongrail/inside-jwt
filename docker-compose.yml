@@ -1,0 +1,40 @@
+version: '3.9'
+services:
+  jwt:
+    container_name: jwt
+    image: inside-jwt
+    networks:
+      - cloud
+    ports:
+      - "80:80"
+    depends_on:
+      - database
+    environment:
+      - "SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/inside"
+      - "SPRING_DATASOURCE_USERNAME=postgres"
+      - "SPRING_DATASOURCE_PASSWORD=123"
+    restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
+
+  database:
+    image: postgres
+    container_name: database
+    networks:
+      - cloud
+    ports:
+      - "5442:5432"
+    environment:
+      POSTGRES_DB: inside
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+    volumes:
+      - /var/lib/postgresql/data
+
+networks:
+    cloud:
+      external: true
+
