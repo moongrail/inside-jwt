@@ -46,7 +46,7 @@
 
 ### Тестовые запросы 
 
-* src/main/resources/requests.http - тестовые запросы.
+* src/main/resources/http/requests.http - тестовые запросы.
 
 ### POM FILE:
 - Java 11
