@@ -26,18 +26,21 @@
 - docker network list - проверить сеть в списке.
 - docker network create cloud - создать сеть.
 
+* ВАЖНО! Первым приложением должен подниматься postgres(database) в композе настроено.
+
+Поднять  композ(должен быть ещё postgres image)
+* 1 cd в папку с файлом docker-compose.yml docker compose up  в консоли в директории приложения.
+* 2 или запустить в idea docker-compose.yml (сверить настройки).
+
+* Запасной вариант.
+
 Билд приложения(ВАЖНО! set container name "inside-jwt", tag name "inside-jwt"):
 
 * 1 вариант cd в папку с докерфайлом и прописать "docker build ."
 * 2 вариант в idea открыть и запустить докерфайл.
-* 3 вариант загрузить с хаба docker pull moongrail/inside:latest
-* ВАЖНО! Первым приложением должен подниматься postgres(database) в композе настроено.
-
-Поднять  композ(должен быть ещё postgres image)
-* 1 вариант docker compose up  в консоли в директории приложения
-* 2 вариант запустить в idea docker-compose.yml (сверить настройки).
-
-
+* 3 вариант загрузить с хаба docker pull moongrail/inside:latest**
+* Далее поднять композ.
+* 
 ### HTTP Эндпоинты:
 * Порт 80.
 * POST http://localhost/api/v1/signUp - регистрация аккаунта. 

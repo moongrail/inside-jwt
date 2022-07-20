@@ -2,7 +2,7 @@ version: '3.9'
 services:
   jwt:
     container_name: jwt
-    image: inside-jwt
+    image: moongrail/inside-jwt:latest
     networks:
       - cloud
     ports:
