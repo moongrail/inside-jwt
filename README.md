@@ -26,10 +26,11 @@
 - docker network list - проверить сеть в списке.
 - docker network create cloud - создать сеть.
 
-* ВАЖНО! Первым приложением должен подниматься postgres(database) в композе настроено.
+### ВАЖНО! Первым приложением должен подниматься postgres(database) в композе настроено.
 
 Поднять  композ(должен быть ещё postgres image)
-* 1 cd в папку с файлом docker-compose.yml docker compose up  в консоли в директории приложения.
+
+* 1 cd в папку с файлом docker-compose.yml, прописать в терминал docker compose up.
 * 2 или запустить в idea docker-compose.yml (сверить настройки).
 
 * Запасной вариант.
