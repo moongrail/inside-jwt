@@ -39,7 +39,7 @@
 
 * 1 вариант cd в папку с докерфайлом и прописать "docker build ."
 * 2 вариант в idea открыть и запустить докерфайл.
-* 3 вариант загрузить с хаба docker pull moongrail/inside:latest**
+* 3 вариант загрузить с хаба docker pull moongrail/inside-jwt:latest**
 * Далее поднять композ.
 * 
 ### HTTP Эндпоинты:
