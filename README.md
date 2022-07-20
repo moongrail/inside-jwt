@@ -33,7 +33,7 @@
 * 1 cd в папку с файлом docker-compose.yml, прописать в терминал docker compose up.
 * 2 или запустить в idea docker-compose.yml (сверить настройки).
 
-* Запасной вариант.
+### Запасной вариант.
 
 Билд приложения(ВАЖНО! set container name "inside-jwt", tag name "inside-jwt"):
 
