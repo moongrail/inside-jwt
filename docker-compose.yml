@@ -35,6 +35,6 @@ services:
       - /var/lib/postgresql/data
 
 networks:
-    cloud:
+    bridge:
       external: true
 
