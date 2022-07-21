@@ -4,7 +4,7 @@ services:
     container_name: jwt
     image: moongrail/inside-jwt:latest
     networks:
-      - bridge
+      - cloud
     ports:
       - "80:80"
     depends_on:
@@ -24,7 +24,7 @@ services:
     image: postgres
     container_name: database
     networks:
-      - bridge
+      - cloud
     ports:
       - "5442:5432"
     environment:
@@ -35,6 +35,6 @@ services:
       - /var/lib/postgresql/data
 
 networks:
-    bridge:
-      external: true
+    cloud:
+      external: false
 
