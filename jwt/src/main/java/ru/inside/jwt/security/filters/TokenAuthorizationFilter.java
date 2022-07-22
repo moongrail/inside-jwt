@@ -37,33 +37,39 @@ public class TokenAuthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        if (request.getRequestURI().equals(SecurityConfiguration.LOGIN_FILTER_PROCESSES_URL)) {
+        if (request.getRequestURI().equals(SecurityConfiguration.LOGIN_FILTER_PROCESSES_URL) ||
+                request.getRequestURI().equals(SecurityConfiguration.SIGN_UP_FILTER_PROCESSES_URL)) {
             filterChain.doFilter(request, response);
         } else {
             String tokenHeader = request.getHeader("Authorization");
+
             if (tokenHeader != null && tokenHeader.startsWith("Bearer_")) {
 
                 String token = tokenHeader.substring("Bearer_".length());
 
                 if (!accessTokensRepository.existsByAccessToken(token)) {
                     logger.warn("Token is not exist");
-                    filterChain.doFilter(request, response);
-                }
-
-                Optional<Account> account = getAccount(token);
-
-                if (account.isPresent()) {
-                    AccountUserDetails userDetails = new AccountUserDetails(account.get());
-                    UsernamePasswordAuthenticationToken authenticationToken =
-                            new UsernamePasswordAuthenticationToken(token, null, userDetails.getAuthorities());
-                    SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-                    filterChain.doFilter(request, response);
-                } else {
-                    logger.warn("Wrong token");
                     response.setContentType(MediaType.APPLICATION_JSON_VALUE);
                     response.setStatus(HttpServletResponse.SC_FORBIDDEN);
                     objectMapper.writeValue(response.getWriter(), Collections.singletonMap("error", "user not found with token"));
+                }else {
+
+                    Optional<Account> account = getAccount(token);
+
+                    if (account.isPresent()) {
+                        AccountUserDetails userDetails = new AccountUserDetails(account.get());
+                        UsernamePasswordAuthenticationToken authenticationToken =
+                                new UsernamePasswordAuthenticationToken(token, null, userDetails.getAuthorities());
+                        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                        filterChain.doFilter(request, response);
+                    } else {
+                        logger.warn("Wrong token");
+                        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+                        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                        objectMapper.writeValue(response.getWriter(), Collections.singletonMap("error", "user not found with token"));
+                    }
                 }
+
             } else {
                 logger.warn("Token is missing");
                 filterChain.doFilter(request, response);

@@ -22,6 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     public static final String API = "/api";
     public static final String LOGIN_FILTER_PROCESSES_URL = API + "/v1/login";
+    public static final String SIGN_UP_FILTER_PROCESSES_URL = API + "/v1/signUp";
 
     @Autowired
     private PasswordEncoder passwordEncoder;

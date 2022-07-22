@@ -2,6 +2,8 @@ version: '3.9'
 services:
   jwt:
     container_name: jwt
+#    build: ./jwt
+#    image: inside-jwt
     image: moongrail/inside-jwt:latest
     networks:
       - cloud
@@ -26,7 +28,7 @@ services:
     networks:
       - cloud
     ports:
-      - "5442:5432"
+      - "5446:5432"
     environment:
       POSTGRES_DB: inside
       POSTGRES_USER: postgres
